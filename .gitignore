@@ -68,11 +68,6 @@ erl_crash.dump
 ### Node ###
 node_modules
 
-### Jekyll ###
-www/
-.jekyll-cache
-src/_assets/vendor
-
 ### uru ###
 uru.bat
 uru.ps1
