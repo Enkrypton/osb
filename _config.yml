@@ -30,6 +30,7 @@ plugins:
   - jekyll-assets
   - kramdown
   - uglifier
+  - jekyll-include-cache
 
 # source: src
 # destination: www
