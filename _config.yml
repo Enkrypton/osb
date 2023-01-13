@@ -31,8 +31,8 @@ plugins:
   - kramdown
   - uglifier
 
-source: src
-destination: www
+# source: src
+# destination: www
 markdown: kramdown
 
 cards:
