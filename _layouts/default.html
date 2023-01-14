@@ -18,7 +18,10 @@ layout: compress
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ site.title }}</title>
     {% asset style.css %}
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+	<script>hljs.highlightAll();</script>
   </head>
   <body>
     {% include _nav.html %}

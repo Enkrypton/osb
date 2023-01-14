@@ -23,8 +23,11 @@ layout: default
             <div class="content">
             {{page.card.description | markdownify}}
 			{{page.card.body | markdownify}}
-			{{page.card.example | markdownify}}
-			{{page.card.code | markdownify}}
+			<h5 class="title is-5">Script</h5>
+			<pre style="padding: 0; display: inline-block; width: 60rem"><code class="language-csharp">{{page.card.code}}</code></pre>
+			<h5 class="title is-5">Usage</h5>
+			<pre style="padding: 0; display: inline-block; width: 60rem"><code class="language-csharp">{{page.card.example}}</code></pre>
+			</div>
             </div>
           </div>
         </div>

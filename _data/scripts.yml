@@ -10,41 +10,55 @@ Advanced Leaves:
   usage: Script
   description: "Blowing leaves effect with per object rotation."
   body: "Works with any leaf sprite or even sakura petals. Can specify start and end location as well as approximate amount of sprites generated."
-  example:```csharp 
-  string path = "sb/leaf.png"
-  Vector2 StartPosition = new Vector2(-120, Random(-100, 480));
-  Vector2 EndPosition = new Vector2(760, StartPosition.Y + 200);
-  Color4 Color1 = Color4.Green;
-  Color4 Color2 = Color4.LightGreen;
-  makeLeaf(51897,72897,StartPosition,EndPosition, 4, Color1, Color2, 0.8);
-  ``` 
-  code:```csharp
-            //parameters: string path to sprite, integer start time, integer end time, Vector2 start coordinates, Vector2 end coordinates, integer overall amount of sprites, double transparency
-            public void makeLeaf(string sprite_path, int Start, int End, Vector2 StartPos, Vector2 EndPos, int amt, Color4 color1, Color4 color2, double alpha){
-            var Beat = Beatmap.GetTimingPointAt(Start).BeatDuration;
- 
-            for(double i = Start; i < End; i += Beat/8)
-            {
-                var Sprite = GetLayer("Particles").CreateSprite(sprite_path);
-                
- 
-                Vector2 Position = StartPos;
-                Vector2 EndPosition = EndPos;
- 
-                Sprite.Move(i, i + 2000, Position, EndPosition);
-                Sprite.Fade(i, i + 2000, 1, 1);
-                Sprite.Fade(Start, End, alpha, alpha);
-
-                Sprite.StartLoopGroup(i, amt);
-                Sprite.ScaleVec(0, 500, 0.5, 0.5, 0.5, -0.5);
-                Sprite.Rotate(0, 500, 0, Math.PI*2);
-                Sprite.EndGroup();
-                if(Random(0, 100)>50)
-                    Sprite.Color(i, color1);
-                    else Sprite.Color(i, color2);
-            }
-        }
-  ```
+  example: "//Declare variables
+  
+  string path = \"sb/leaf.png\";
+  
+  Vector2 StartPosition = new Vector2(-120, Random(-100, 480)); 
+  
+  Vector2 EndPosition = new Vector2(760, StartPosition.Y + 200); 
+  
+  Color4 Color1 = Color4.Green; Color4;
+  Color2 = Color4.LightGreen;
+  
+  //Call function
+  
+  makeLeaf(51897,72897,StartPosition,EndPosition, 4, Color1, Color2, 0.8);"
+  code: "public void makeLeaf(string path, int Start, int End, Vector2 startpos, Vector2 endpos, int amt, Color4 color1, Color4 color2, double alpha){
+  
+  var Beat = Beatmap.GetTimingPointAt(Start).BeatDuration;
+  
+  for(double i = Start; i < End; i += Beat/8){
+  
+  &emsp;var Sprite = GetLayer(\"Particles\").CreateSprite(path);
+  
+  &emsp;Vector2 Position = startpos;
+  
+  &emsp;Vector2 EndPosition = endpos;
+  
+  &emsp;Sprite.Move(i, i + 2000, Position, EndPosition);
+  
+  &emsp;Sprite.Fade(i, i + 2000, 1, 1);
+  
+  &emsp;Sprite.Fade(Start, End, alpha, alpha);
+  
+  &emsp;Sprite.StartLoopGroup(i, amt);
+  
+  &emsp;Sprite.ScaleVec(0, 500, 0.5, 0.5, 0.5, -0.5);
+  
+  &emsp;Sprite.Rotate(0, 500, 0, Math.PI*2);
+  
+  &emsp;Sprite.EndGroup();
+  
+  &emsp;if(Random(0, 100)>50)
+  
+  &emsp;&emsp;Sprite.Color(i, Color4.Green);
+  
+  &emsp;else Sprite.Color(i, Color4.LightGreen);
+  
+  &emsp;}
+  
+    }"
 
 BG Parallax:
   type: Background

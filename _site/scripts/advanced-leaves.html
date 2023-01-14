@@ -6,14 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Storyboard Script Library</title>
-    <link rel="stylesheet" type="text/css" href="/assets/style-9be24f33a2281d91e245bb202590724f60842c173b1f386a19e854b2926dae40.css">
+    <link rel="stylesheet" type="text/css" href="/osb/assets/style-9be24f33a2281d91e245bb202590724f60842c173b1f386a19e854b2926dae40.css">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+	<script>hljs.highlightAll();</script>
   </head>
   <body>
     <nav id="navbar" class="navbar has-shadow">
   <div class="container">
     <div class="navbar-brand">
-      <a class="navbar-item" href="/"><span class="icon"></span><h1 class="title is-5">Storyboard Script Library</h1></a>
+      <a class="navbar-item" href="/osb"><span class="icon"></span><h1 class="title is-5">Storyboard Script Library</h1></a>
       <a class="navbar-item is-hidden-desktop search-show"><span class="icon has-text-grey-darker"><i class="fas fa-lg fa-search"></i></span></a>
       <div id="navbarBurger" class="navbar-burger burger" data-target="navMain">
         <span></span>
@@ -27,11 +30,11 @@
           <a class="navbar-link is-active">Type</a>
           <div id="moreDropdown" class="navbar-dropdown">
             
-            <a class="navbar-item" href="/type/background"><span class="has-text-weight-bold">Background</span></a>
+            <a class="navbar-item" href="/osb/type/background"><span class="has-text-weight-bold">Background</span></a>
             
-            <a class="navbar-item" href="/type/particles"><span class="has-text-weight-bold">Particles</span></a>
+            <a class="navbar-item" href="/osb/type/particles"><span class="has-text-weight-bold">Particles</span></a>
             
-            <a class="navbar-item" href="/type/text"><span class="has-text-weight-bold">Text</span></a>
+            <a class="navbar-item" href="/osb/type/text"><span class="has-text-weight-bold">Text</span></a>
             
           </div>
         </div>
@@ -64,22 +67,52 @@
 
 <section class="section">
   <div class="container">
-      <h1 class="title is-3 fancy">Falling Leaves</h1>
+      <h1 class="title is-3 fancy">Advanced Leaves</h1>
       <div class="box">
         <div class="columns">
           <div class="column is-one-quarter-desktop is-size-7">
-            <span class="icon accent"><i class="fal fa-fw fa-folder-open"></i></span> <a href="/type/particles">Particles</a><br>
+            <span class="icon accent"><i class=" fa-fw fa-folder-open"></i></span> <a href="/type/particles">Particles</a><br>
             
             
               
-                <span class="icon accent"><i class="fal fa-fw fa-code"></i></span> Script<br>
+                <span class="icon accent"><i class=" fa-fw fa-code"></i></span> Script<br>
               
             
           </div>
           <div class="column">
             <div class="content">
-            <p>Falling leaves effect with per object rotation.</p>
+            <p>Blowing leaves effect with per object rotation.</p>
 
+			<p>Works with any leaf sprite or even sakura petals. Can specify start and end location as well as approximate amount of sprites generated.</p>
+
+			<h5 class="title is-5">Script</h5>
+			<pre style="padding: 0; display: inline-block; width: 60rem"><code class="language-csharp">public void makeLeaf(string path, int Start, int End, Vector2 startpos, Vector2 endpos, int amt, Color4 color1, Color4 color2, double alpha){
+var Beat = Beatmap.GetTimingPointAt(Start).BeatDuration;
+for(double i = Start; i < End; i += Beat/8){
+&emsp;var Sprite = GetLayer("Particles").CreateSprite(path);
+&emsp;Vector2 Position = startpos;
+&emsp;Vector2 EndPosition = endpos;
+&emsp;Sprite.Move(i, i + 2000, Position, EndPosition);
+&emsp;Sprite.Fade(i, i + 2000, 1, 1);
+&emsp;Sprite.Fade(Start, End, alpha, alpha);
+&emsp;Sprite.StartLoopGroup(i, amt);
+&emsp;Sprite.ScaleVec(0, 500, 0.5, 0.5, 0.5, -0.5);
+&emsp;Sprite.Rotate(0, 500, 0, Math.PI*2);
+&emsp;Sprite.EndGroup();
+&emsp;if(Random(0, 100)>50)
+&emsp;&emsp;Sprite.Color(i, Color4.Green);
+&emsp;else Sprite.Color(i, Color4.LightGreen);
+&emsp;}
+}</code></pre>
+			<h5 class="title is-5">Usage</h5>
+			<pre style="padding: 0; display: inline-block; width: 60rem"><code class="language-csharp">//Declare variables
+string path = "sb/leaf.png";
+Vector2 StartPosition = new Vector2(-120, Random(-100, 480));
+Vector2 EndPosition = new Vector2(760, StartPosition.Y + 200);
+Color4 Color1 = Color4.Green; Color4; Color2 = Color4.LightGreen;
+//Call function
+makeLeaf(51897,72897,StartPosition,EndPosition, 4, Color1, Color2, 0.8);</code></pre>
+			</div>
             </div>
           </div>
         </div>
@@ -89,7 +122,7 @@
   </div> <!-- /container -->
 </section>
 
-    <script src="/assets/main-4aeeb0248324d609e75f91ce023fb568f32a5e956a663c9c321c4da1cef468e7.js" type="text/javascript"></script>
+    <script src="/osb/assets/main-4aeeb0248324d609e75f91ce023fb568f32a5e956a663c9c321c4da1cef468e7.js" type="text/javascript"></script>
     <footer class="footer has-text-weight-light">
   <div class="container">
     <div class="content has-text-centered">
