@@ -1,6 +1,6 @@
 source "https://rubygems.org"
-ruby "3.0.5","~> 4.3.1"
-gem "jekyll",
+ruby "3.0.5"
+gem "jekyll","~> 4.3.1"
 gem 'webrick'
 gem "html-proofer", "~> 4.4.3"
 gem "json", "~> 2.1.0"
