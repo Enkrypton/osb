@@ -43,12 +43,12 @@ cards:
     name: type      # field in yaml to group by
     caption: type  # name of category (ex: industries)
     fa-icon: folder-open
-    fa-style: fal        # valid: fas (solid), far (regular), fal (light), fab (brand)
+    fa-style:       # valid: fas (solid), far (regular), fal (light), fab (brand)
   meta:               # use this section to display card info, in addition to 'group_by'
     - name: usage
       caption: usage
       fa-icon: code
-      fa-style: fal
+      fa-style:
 
 
 compress_html:
