@@ -6,6 +6,7 @@ gem "json", "~> 2.1.0"
 gem "nokogiri", "~> 1.14.0"
 gem "rack", ">= 2.0.6"
 gem "sprockets", "~> 3.7"
+gem "github-pages", "~> 227", group: :jekyll_plugins
 
 group :jekyll_plugins do
   gem "jekyll-assets", "~> 3.0.11"
