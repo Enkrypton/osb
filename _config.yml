@@ -16,7 +16,7 @@
 title: Storyboard Script Library
 email: me@enkrypton.moe
 description: >- # this means to ignore newlines until "baseurl:"
-  A card theme for Jekyll made awesome using Bulma.
+  Storyboard Script Library
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 analytics-id:
@@ -37,22 +37,18 @@ plugins:
 markdown: kramdown
 
 cards:
-  data: films         # yaml file in _data (without .yml)
+  data: scripts         # yaml file in _data (without .yml)
   comments: false
   group_by:
-    name: decade      # field in yaml to group by
-    caption: decades  # name of category (ex: industries)
+    name: type      # field in yaml to group by
+    caption: type  # name of category (ex: industries)
     fa-icon: folder-open
     fa-style: far        # valid: fas (solid), far (regular), fal (light), fab (brand)
   meta:               # use this section to display card info, in addition to 'group_by'
-    - name: year
-      caption: year
-      fa-icon: calendar
+    - name: usage
+      caption: usage
+      fa-icon: code
       fa-style: far
-    - name: url
-      caption: www
-      fa-icon: globe
-      fa-style: fas
 
 
 compress_html:

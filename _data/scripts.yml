@@ -1,0 +1,21 @@
+# Template
+#
+# Card Name:
+#   category:  # create groups
+#   url:  # Home page
+#   description: " # Company description and how Elixir is used"
+
+Falling Leaves:
+  type: Particles
+  usage: Script
+  description: "Falling leaves effect with per object rotation."
+
+BG Parallax:
+  type: Background
+  usage: Script
+  description: "Moves the background in the opposite direction of player cursor. As seen in Chata - enn. "
+
+EZ Lyrics:
+  type: Text
+  usage: Configurable
+  description: "Very esay to use Lyrics script. Plug and play, configure inside Storybrew. Requires a timed .ass file"
