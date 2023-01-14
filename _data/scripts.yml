@@ -64,14 +64,14 @@ BG Parallax:
   type: Background
   usage: Script
   description: "Moves the background in the opposite direction of player cursor. As seen in Chata - enn. "
-  body: "Chata - enn great map btw ``` source code ```"
-  example:
-  code:
+  body: "Great map btw"
+  example: "I will put soon"
+  code: "yeah"
 
 EZ Lyrics:
   type: Text
   usage: Configurable
-  description: "Very esay to use Lyrics script. Plug and play, configure inside Storybrew. Requires a timed .ass file"
-  body: "made with help from pono ``` super clean code ```"
-  example:
-  code:
+  description: "A very easy to use Lyrics script. Plug and play, configure inside Storybrew. Requires a timed .ass file"
+  body: "Made with help from Pono. Works as a Storybrew configurable. Load the effect and modify the values in the application."
+  example: "Used in Storybrew"
+  code: "Download here: https://enkrypton.moe/assets/sb/LyricsSimplified.cs"
