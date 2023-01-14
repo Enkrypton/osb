@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-ruby "3.0.5"
+ruby "3.0.5","~> 4.3.1"
 gem "jekyll",
 gem 'webrick'
 gem "html-proofer", "~> 4.4.3"
