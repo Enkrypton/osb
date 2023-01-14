@@ -17,8 +17,8 @@ title: Storyboard Script Library
 email: me@enkrypton.moe
 description: >- # this means to ignore newlines until "baseurl:"
   Storyboard Script Library
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/osb" # the subpath of your site, e.g. /blog
+url: "https://enkrypton.moe/" # the base hostname & protocol for your site, e.g. http://example.com
 analytics-id:
 # Social settings
 github: Enkrypton/osb
