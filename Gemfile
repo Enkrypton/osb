@@ -8,7 +8,7 @@ gem "rack", ">= 2.0.6"
 gem "sprockets", "~> 3.7"
 
 group :jekyll_plugins do
-  gem "jekyll-assets", "~> 2.3.2"
+  gem "jekyll-assets", "~> 3.0.12"
   gem "kramdown", "~> 1.17.0"
   gem "uglifier", "~> 4.1.12"
 end
