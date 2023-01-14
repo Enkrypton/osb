@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 ruby "3.0.5"
 gem "jekyll","~> 3.8.3"
-gem 'webrick'
+gem 'webrick', '~> 1.7'
 gem "html-proofer", "~> 4.4.3"
 gem "json", "~> 2.1.0"
 gem "nokogiri", "~> 1.14.0"
