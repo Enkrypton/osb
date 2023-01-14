@@ -9,13 +9,16 @@ Falling Leaves:
   type: Particles
   usage: Script
   description: "Falling leaves effect with per object rotation."
+  body: "Additional description goes here along with the actual code ``` code test here ```"
 
 BG Parallax:
   type: Background
   usage: Script
   description: "Moves the background in the opposite direction of player cursor. As seen in Chata - enn. "
+  body: "Chata - enn great map btw ``` source code ```"
 
 EZ Lyrics:
   type: Text
   usage: Configurable
   description: "Very esay to use Lyrics script. Plug and play, configure inside Storybrew. Requires a timed .ass file"
+  body: "made with help from pono ``` super clean code ```"
