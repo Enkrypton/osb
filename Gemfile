@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-ruby "2.7.2"
+ruby "3.0.5"
 gem "jekyll", "~> 3.8.5"
 gem "html-proofer", "~> 4.4.3"
 gem "json", "~> 2.1.0"
