@@ -72,3 +72,5 @@ node_modules
 uru.bat
 uru.ps1
 uru_rt.exe
+
+Gemfile.lock

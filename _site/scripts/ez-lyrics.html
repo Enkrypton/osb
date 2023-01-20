@@ -81,14 +81,96 @@
           </div>
           <div class="column">
             <div class="content">
-            <p>Very esay to use Lyrics script. Plug and play, configure inside Storybrew. Requires a timed .ass file</p>
+            <p>A very easy to use Lyrics script. Plug and play, configure inside Storybrew. Requires a timed .ass file</p>
 
-			<p>made with help from pono <code class="highlighter-rouge">super clean code</code></p>
+			<p>Made with help from PoNo. Commments by PoNo as well. Works as a Storybrew configurable. Load the effect in Storybrew and modify the values in the application.</p>
 
 			<h5 class="title is-5">Script</h5>
-			<pre style="padding: 0; display: inline-block; width: 60rem"><code class="language-csharp"></code></pre>
-			<h5 class="title is-5">Usage</h5>
-			<pre style="padding: 0; display: inline-block; width: 60rem"><code class="language-csharp"></code></pre>
+			<pre style="padding: 0; white-space: pre-wrap;"><code class="language-csharp">using OpenTK;
+using OpenTK.Graphics;
+using StorybrewCommon.Mapset;
+using StorybrewCommon.Scripting;
+using StorybrewCommon.Storyboarding;
+using StorybrewCommon.Storyboarding.Util;
+using StorybrewCommon.Subtitles;
+using StorybrewCommon.Util;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace StorybrewScripts
+{
+    public class LyricsSimplified : StoryboardObjectGenerator
+    {
+        [Configurable] public string SubtitlesPath;
+        [Configurable] public string FontName = "Verdana";
+        [Configurable] public int PosX = 320;
+        [Configurable] public int PosY = 240;
+        SubtitleSet Subtitles;
+        FontGenerator Font;
+        public override void Generate()
+        {
+            //Set the private variable subtitle to the subtitlefile info
+            Subtitles = LoadSubtitles(SubtitlesPath);
+
+            //Set the Font variable to the right fontGenerator
+            Font = SetFont();
+
+            //This launch the function for rendering our lyrics!
+            GenerateSubtitles();
+        }
+        private FontGenerator SetFont()
+        {
+            //these line create a FontGenerator object that have the font parameters you want to be generated
+            //this load the fontName, style, color, size etc etc... everything you see in the sb/f folder stuff is stored in that object
+            var font = LoadFont("sb/f", new FontDescription{
+                FontPath = FontName,
+                FontSize = 100,
+                Color = Color4.White
+            });
+
+            //after setting the font we simply return it to the function! (this is why I can do Font = SetFont())
+            return font;
+        }
+        private void GenerateSubtitles()
+        {
+            //First we loop into every lines of our lyrics file!
+            foreach(var line in Subtitles.Lines)
+            {
+                //For each line we're gonna set a base position to X = PosX & Y = PosY
+                //and also a scale that is set to 0.3 to not have stretched up sprites!
+                float LetterX = PosX;
+                float LetterY = PosY;
+                float scale = 0.3f;
+
+                //Once we're done with setting up all this things we're gonna split our lines into letters (HELLO WORLDS => H, E, L, L, O... etc..)
+                foreach(var letter in line.Text)
+                {
+                    //so for each letter we link a texture, which, is the thing that gonna use the Font object we've created earlier to generate our sprite!!
+                    var texture = Font.GetTexture(letter.ToString());
+
+                    //We check if the texture isn't empty (white spaces)
+                    if(!texture.IsEmpty)
+                    {
+                        //We set the position of each letter, and add an offset for them (to fix not aligned stuffs!)
+                        var position = new Vector2(LetterX, LetterY)
+                            + texture.OffsetFor(OsbOrigin.TopCentre) * scale;
+
+                        //Now we're good! we can finally code our sprite methods! :)
+                        var sprite = GetLayer("Foreground").CreateSprite(texture.Path, OsbOrigin.Centre, position);
+                        sprite.Fade(line.StartTime, line.EndTime, 1, 1);
+                        sprite.Scale(line.StartTime, scale);
+                    }
+                    //don't forget to move your letter position after each new letter!
+                    LetterX += texture.BaseWidth * scale;
+                }
+            }
+        }
+    }
+}
+</code></pre>
+			<h5 class="title is-5">Example Usage</h5>
+			<pre style="padding: 0; white-space: pre-wrap;"><code class="language-csharp">Configureable</code></pre>
 			</div>
             </div>
           </div>
@@ -99,7 +181,7 @@
   </div> <!-- /container -->
 </section>
 
-    <script src="/osb/assets/main-4aeeb0248324d609e75f91ce023fb568f32a5e956a663c9c321c4da1cef468e7.js" type="text/javascript"></script>
+    <script src="/osb/assets/main-8b8817aacb336958feca75d2e8f77990b50d1f9e3b5a36b66862cdd762b23775.js" type="text/javascript"></script>
     <footer class="footer has-text-weight-light">
   <div class="container">
     <div class="content has-text-centered">

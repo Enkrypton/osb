@@ -83,12 +83,37 @@
             <div class="content">
             <p>Moves the background in the opposite direction of player cursor. As seen in Chata - enn.</p>
 
-			<p>Chata - enn great map btw <code class="highlighter-rouge">source code</code></p>
+			<p>Creates a pretty sharp screen move effect. The background moves opposite to the direction of the next hitobjects, so in gameplay it looks like the background is parallax with the cursor. Script includes a parameter for start/end fade for smooth transitions. Fade out opacity can also be configured.</p>
 
 			<h5 class="title is-5">Script</h5>
-			<pre style="padding: 0; display: inline-block; width: 60rem"><code class="language-csharp"></code></pre>
-			<h5 class="title is-5">Usage</h5>
-			<pre style="padding: 0; display: inline-block; width: 60rem"><code class="language-csharp"></code></pre>
+			<pre style="padding: 0; white-space: pre-wrap;"><code class="language-csharp">public void parallaxer(string BackgroundPath, int StartFade, int StartTime, int EndTime, int EndFade, int EndOpacity, float amt){
+    var bitmap = GetMapsetBitmap(BackgroundPath);
+    var bg = GetLayer("bg").CreateSprite(BackgroundPath);
+    bg.Scale(StartTime, (570.0f / bitmap.Height)+0.1);
+    var Beat = Beatmap.GetTimingPointAt(Start).BeatDuration;
+    Vector2 screenCenter = new Vector2(320,240);
+    Vector2 Position;
+    Vector2 oldPosition = screenCenter;
+    Vector2 Direction;
+    double lastTime = StartTime;
+    bg.Fade(StartFade, StartTime, 0, 1);
+    bg.Fade(EndTime, EndFade, 1, EndOpacity);
+    foreach(var hitobject in Beatmap.HitObjects){
+        if(hitobject.StartTime >= StartTime && hitobject.StartTime <= EndTime){
+            Direction = (screenCenter+hitobject.Position)*amt;
+            Position = screenCenter+Direction;
+            bg.Move(OsbEasing.InOutQuad, lastTime, hitobject.StartTime, oldPosition, Position);      
+            oldPosition = Position;
+            lastTime = hitobject.StartTime;
+        }
+    }
+}
+</code></pre>
+			<h5 class="title is-5">Example Usage</h5>
+			<pre style="padding: 0; white-space: pre-wrap;"><code class="language-csharp">var Beat = Beatmap.GetTimingPointAt(Start).BeatDuration;
+//usually a move amount of 0.015f is good, increase/decrease if needed
+parallaxer("bg.jpg",132748,132748+beat, 150431, 150431+beat,0,0.015f);
+</code></pre>
 			</div>
             </div>
           </div>
@@ -99,7 +124,7 @@
   </div> <!-- /container -->
 </section>
 
-    <script src="/osb/assets/main-4aeeb0248324d609e75f91ce023fb568f32a5e956a663c9c321c4da1cef468e7.js" type="text/javascript"></script>
+    <script src="/osb/assets/main-8b8817aacb336958feca75d2e8f77990b50d1f9e3b5a36b66862cdd762b23775.js" type="text/javascript"></script>
     <footer class="footer has-text-weight-light">
   <div class="container">
     <div class="content has-text-centered">
