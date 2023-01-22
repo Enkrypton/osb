@@ -162,5 +162,17 @@ EZ Lyrics:
             }
         }
     }
+    
+
+Remove Background:
+    type: Background
+    usage: Script
+    description: Hides the beatmap background in the storyboard.
+    body:  Fades out the original background of the beatmap. Usually the first step when storyboarding, so custom background can be used without interference. If you want to set this for multiple beatmaps, you can set the layer name and use that layer as a Difficulty Spesific layer.
+    example: |
+        RemoveBackground();
+        RemoveBackground("Beatmap");
+    code: |
+        public void RemoveBackground(layer = "") => GetLayer(layer).CreateSprite(Beatmap.BackgroundPath).Fade(0,0);
 
    
