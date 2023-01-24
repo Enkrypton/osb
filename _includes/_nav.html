@@ -15,7 +15,7 @@
           <a class="navbar-link is-active">{{ site.cards.group_by.caption | capitalize }}</a>
           <div id="moreDropdown" class="navbar-dropdown">
             {% for category in site.data['categories'] %}
-            <a class="navbar-item" href="/osb/{{ site.cards.group_by.caption }}/{{ category['path'] }}"><span class="has-text-weight-bold">{{ category['name'] }}</span></a>
+            <a class="navbar-item" href="{{ site.cards.group_by.caption }}/{{ category['path'] }}"><span class="has-text-weight-bold">{{ category['name'] }}</span></a>
             {% endfor %}
           </div>
         </div>
