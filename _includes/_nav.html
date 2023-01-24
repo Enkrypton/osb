@@ -1,7 +1,7 @@
 <nav id="navbar" class="navbar has-shadow">
   <div class="container">
     <div class="navbar-brand">
-      <a class="navbar-item" href="{{ site.url }}"><span class="icon"></span><h1 class="title is-5">{{ site.title }}</h1></a>
+      <a class="navbar-item" href="/"><span class="icon"></span><h1 class="title is-5">{{ site.title }}</h1></a>
       <a class="navbar-item is-hidden-desktop search-show"><span class="icon has-text-grey-darker"><i class="fas fa-lg fa-search"></i></span></a>
       <div id="navbarBurger" class="navbar-burger burger" data-target="navMain">
         <span></span>
@@ -15,7 +15,7 @@
           <a class="navbar-link is-active">{{ site.cards.group_by.caption | capitalize }}</a>
           <div id="moreDropdown" class="navbar-dropdown">
             {% for category in site.data['categories'] %}
-            <a class="navbar-item" href="{{ site.url }}/{{ site.cards.group_by.caption }}/{{ category['path'] }}"><span class="has-text-weight-bold">{{ category['name'] }}</span></a>
+            <a class="navbar-item" href="{{ site.cards.group_by.caption }}/{{ category['path'] }}"><span class="has-text-weight-bold">{{ category['name'] }}</span></a>
             {% endfor %}
           </div>
         </div>
