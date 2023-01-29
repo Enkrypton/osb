@@ -1,6 +1,6 @@
 Message me on Discord for submissions. ``` Enkrypton#0001 ```
 
-Also open for suggestions!
+Also open for website suggestions!
 
 ### Format:
 
@@ -8,8 +8,10 @@ Name:
 
 Short Description:
 
-Description:
+Long Description:
 
-Usage:
+Example Usage:
 
 Script:
+
+(Optional) Author: 
