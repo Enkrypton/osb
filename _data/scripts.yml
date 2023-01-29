@@ -46,6 +46,7 @@ BG Parallax:
   description: "Moves the background in the opposite direction of player cursor. As seen in Chata - enn. "
   body: "Creates a pretty sharp screen move effect. The background moves opposite to the direction of the next hitobjects, so in gameplay it looks like the background is parallax with the cursor. Script includes a parameter for start/end fade for smooth transitions. Fade out opacity can also be configured."
   example:   |
+    var Start = 0; //change to any beatmap timing point
     var Beat = Beatmap.GetTimingPointAt(Start).BeatDuration;
     //usually a move amount of 0.015f is good, increase/decrease if needed
     parallaxer("bg.jpg",132748,132748+beat, 150431, 150431+beat,0,0.015f);
@@ -54,7 +55,7 @@ BG Parallax:
         var bitmap = GetMapsetBitmap(BackgroundPath);
         var bg = GetLayer("bg").CreateSprite(BackgroundPath);
         bg.Scale(StartTime, (570.0f / bitmap.Height)+0.1);
-        var Beat = Beatmap.GetTimingPointAt(Start).BeatDuration;
+        var Beat = Beatmap.GetTimingPointAt(StartTime).BeatDuration;
         Vector2 screenCenter = new Vector2(320,240);
         Vector2 Position;
         Vector2 oldPosition = screenCenter;
@@ -175,4 +176,78 @@ Remove Background:
     code: |
         public void RemoveBackground(layer = "") => GetLayer(layer).CreateSprite(Beatmap.BackgroundPath).Fade(0,0);
 
+BG Parallax Configurable:
+  type: Background
+  usage: Configurable
+  description: "Moves the background in the opposite direction of player cursor. As seen in Chata - enn. Configureable version."
+  body: "Creates a pretty sharp screen move effect. The background moves opposite to the direction of the next hitobjects, so in gameplay it looks like the background is parallax with the cursor. Script includes a parameter for start/end fade for smooth transitions. Fade out opacity can also be configured."
+  example: "Configurable"
+  code:   |
+    using StorybrewCommon.Scripting;
+    using StorybrewCommon.Storyboarding;
+    using StorybrewCommon.Mapset;
+    using System.Linq;
+    using OpenTK;
+
+    namespace StorybrewScripts
+    {
+        public class BGParallax : StoryboardObjectGenerator
+        {
+            [Configurable]
+            public string BackgroundPath = "";
+
+            [Configurable]
+            public int StartTime = 0;
+
+            [Configurable]
+            public int EndTime = 0;
+
+            [Configurable]
+            public double StartFadeDuration = 200;
+
+            [Configurable]
+            public double EndFadeDuration = 200;
+
+            [Configurable]
+            public double Opacity = 0.2;
+
+            [Configurable]
+            public float Shake = 0.015f;
+
+            public override void Generate()
+            {
+                if (BackgroundPath == "") BackgroundPath = Beatmap.BackgroundPath ?? string.Empty;
+                if (StartTime == EndTime) EndTime = (int)(Beatmap.HitObjects.LastOrDefault()?.EndTime ?? AudioDuration);
+                Parallaxer(BackgroundPath, StartFadeDuration, StartTime, EndTime, EndFadeDuration, Opacity, Shake);
+            }
+
+            public void Parallaxer(string BackgroundPath, double StartFade, int StartTime, int EndTime, double EndFade, double Opacity, float Shake)
+            {
+                var bitmap = GetMapsetBitmap(BackgroundPath);
+                var bg = GetLayer("blur").CreateSprite(BackgroundPath);
+                var beat = Beatmap.GetTimingPointAt(StartTime).BeatDuration;
+                Vector2 screenCenter = new Vector2(320, 240);
+                Vector2 position;
+                Vector2 oldPosition = screenCenter;
+                Vector2 direction;
+                double lastTime = StartTime;
+
+                bg.Scale(StartTime, (480.0f / bitmap.Height));
+                bg.Fade(StartTime-StartFadeDuration, StartTime, 0, Opacity);
+                bg.Fade(EndTime-EndFadeDuration, EndTime , Opacity , 0);
+
+                foreach (var hitobject in Beatmap.HitObjects)
+                {
+                    if (hitobject.StartTime >= StartTime && hitobject.StartTime <= EndTime)
+                    {
+                        direction = (screenCenter + hitobject.Position) * Shake;
+                        position = screenCenter + direction;
+                        bg.Move(OsbEasing.InOutQuad, lastTime, hitobject.StartTime, oldPosition, position);
+                        oldPosition = position;
+                        lastTime = hitobject.StartTime;
+                    }
+                }
+            }
+        }
+    }
    
